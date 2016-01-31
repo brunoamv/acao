@@ -17,8 +17,27 @@ class Comissoes(models.Model):
       
       return comissoesJSON     
 
+class Frentes(models.Model):
+    sigla = models.CharField(max_length=200)
+    nome = models.CharField(max_length=200)
+    tipo = models.CharField(max_length=200)
+    ano = models.DateTimeField('date published') 
+
+
+    def toJSON(self):
+      frentesJSON = {}
+      frentesJSON['id'] = str(self.pk)
+      frentesJSON['sigla'] = self.sigla
+      frentesJSON['nome'] = self.nome
+      frentesJSON['tipo'] = self.tipo
+      frentesJSON['ano'] = self.ano
+
+      return frentesJSON  
+
+
 class Parlamentar(models.Model):
     comissoes  = models.ManyToManyField(Comissoes)
+    frentes  = models.ManyToManyField(Frentes)
     nome = models.CharField(max_length=200)
     uf = models.CharField(max_length=200)
     celular = models.CharField(max_length=200)

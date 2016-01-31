@@ -1,6 +1,6 @@
 from django.template.context import RequestContext
 from django.shortcuts import redirect, render_to_response
-from .models import Parlamentar,Comissoes
+from .models import Parlamentar,Comissoes,Frentes
 from django.http import HttpResponse
 import simplejson
 
@@ -51,6 +51,25 @@ def detail_comissao(request, id_comissao):
     comissao = Comissoes.objects.get(id=id_comissao)
     responseDict["comissao"] = comissao.toJSON()
     return render_to_response('comissao_detalhe.html', responseDict, context_instance=RequestContext(request))
+
+def go_to_frente(request):
+    responseDict = {}
+    return render_to_response('frente.html', responseDict, context_instance=RequestContext(request))
+
+def listar_frentes(request):
+    responseDict = {}
+    frentes_list = []
+    frentes = Frentes.objects.all()
+    for frente in frentes:
+        frentes_list.append(frente.toJSON())
+    responseDict['frentes'] = frentes_list
+    return jsonResponse(responseDict)
+
+def detail_frente(request, id_frente):
+    responseDict = {}
+    frente = Frentes.objects.get(id=id_frente)
+    responseDict["frente"] = frente.toJSON()
+    return render_to_response('frente_detalhe.html', responseDict, context_instance=RequestContext(request))
 
 
 def jsonResponse(responseDict):

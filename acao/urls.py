@@ -10,6 +10,9 @@ urlpatterns = [
    url(r'^comissao/$', "acao.views.go_to_comissao"),
    url(r'^comissao/(?P<id_comissao>[0-9])/$', "acao.views.detail_comissao"),
    url(r'^comissao/list/$', "acao.views.listar_comissoes"),
+   url(r'^frente/$', "acao.views.go_to_frente"),
+   url(r'^frente/(?P<id_frente>[0-9])/$', "acao.views.detail_frente"),
+   url(r'^frente/list/$', "acao.views.listar_frentes"),
 ]
 
 urlpatterns += [
