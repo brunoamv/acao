@@ -10,6 +10,7 @@ class Comissoes(models.Model):
     def toJSON(self):
       comissoesJSON = {}
       comissoesJSON['id'] = str(self.pk)
+      comissoesJSON['sigla'] = self.sigla
       comissoesJSON['nome'] = self.nome
       comissoesJSON['indicado'] = self.indicado
       comissoesJSON['condicao'] = self.condicao

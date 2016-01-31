@@ -35,7 +35,7 @@ def detail_parlamentares(request, id_parlamentar):
 
 def go_to_comissao(request):
     responseDict = {}
-    return render_to_response('comissao2.html', responseDict, context_instance=RequestContext(request))
+    return render_to_response('comissao.html', responseDict, context_instance=RequestContext(request))
 
 def listar_comissoes(request):
     responseDict = {}
@@ -45,6 +45,12 @@ def listar_comissoes(request):
         comissoes_list.append(comissao.toJSON())
     responseDict['comissoes'] = comissoes_list
     return jsonResponse(responseDict)
+
+def detail_comissao(request, id_comissao):
+    responseDict = {}
+    comissao = Comissoes.objects.get(id=id_comissao)
+    responseDict["comissao"] = comissao.toJSON()
+    return render_to_response('comissao_detalhe.html', responseDict, context_instance=RequestContext(request))
 
 
 def jsonResponse(responseDict):

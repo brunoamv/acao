@@ -11,7 +11,7 @@ Parlamentar.prototype.resgatarParlamentares = function(){
 		lista_parlamentares = resultado['parlamentares'];
 		
 		for(x in lista_parlamentares){
-			$('#table_parlamentares tbody').append('<tr id="'+lista_parlamentares[x]['id']+'"><td>'+lista_parlamentares[x]['nome'] +'</td><td>'+lista_parlamentares[x]['uf'] +'</td><td>'+lista_parlamentares[x]['telefone'] +'</td><td>'+lista_parlamentares[x]['email'] +'</td><td><font color="red"><i class="fa fa-remove"></i></font></td></tr>')
+			$('#table_parlamentares tbody').append('<tr id="'+lista_parlamentares[x]['id']+'"><td>'+lista_parlamentares[x]['nome'] +'</td><td>'+lista_parlamentares[x]['uf'] +'</td><td>'+lista_parlamentares[x]['telefone'] +'</td><td>'+lista_parlamentares[x]['email'] +'</td><td><font color="red"><i class="fa fa-remove"></i></font></td></tr>')			
 		}
 
 		$("#table_parlamentares tbody tr").click(function(e){
