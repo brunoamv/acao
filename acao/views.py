@@ -1,6 +1,6 @@
 from django.template.context import RequestContext
 from django.shortcuts import redirect, render_to_response
-from .models import Parlamentar,Comissoes,Frentes
+from .models import Parlamentar,Comissoes,Frente,FrenteParlamentar
 from django.http import HttpResponse
 import simplejson
 
@@ -56,20 +56,49 @@ def go_to_frente(request):
     responseDict = {}
     return render_to_response('frente.html', responseDict, context_instance=RequestContext(request))
 
-def listar_frentes(request):
+def listar_frente(request):
     responseDict = {}
-    frentes_list = []
-    frentes = Frentes.objects.all()
+    frente_list = []
+    frentes = Frente.objects.all()
     for frente in frentes:
-        frentes_list.append(frente.toJSON())
-    responseDict['frentes'] = frentes_list
+        frente_list.append(frente.toJSON())
+    responseDict['frentes'] = frente_list
     return jsonResponse(responseDict)
+
+def detail_frente_parlamentares(request,id_frente):
+    responseDict = {}
+    frenteParlametar_list = []
+    frenteParlametares = FrenteParlamentar.objects.filter(frente_id=id_frente)
+    for frenteParlametar in frenteParlametares:
+        frenteParlametar_list.append(frenteParlametar.toJSON())
+    responseDict['frenteParlametares'] = frenteParlametar_list
+    return jsonResponse(responseDict)
+
+def create_frente_parlamentares(request,id_frente):
+
+
+    return jsonResponse(responseDict)
+
+
 
 def detail_frente(request, id_frente):
     responseDict = {}
-    frente = Frentes.objects.get(id=id_frente)
+    frente = Frente.objects.get(id=id_frente)
     responseDict["frente"] = frente.toJSON()
     return render_to_response('frente_detalhe.html', responseDict, context_instance=RequestContext(request))
+
+def create_frente(request):
+    responseDict = {}
+    return render_to_response('frente_create.html', responseDict, context_instance=RequestContext(request))
+
+def update_frente(request):
+    responseDict = {}
+    return render_to_response('frente_create.html', responseDict, context_instance=RequestContext(request))
+
+def delete_frente_id(request, id_frente):
+    responseDict = {}
+    frente = Frentes.objects.set(id=id_frente)
+    return render_to_response('frente.html', responseDict, context_instance=RequestContext(request))
 
 
 def jsonResponse(responseDict):

@@ -11,8 +11,13 @@ urlpatterns = [
    url(r'^comissao/(?P<id_comissao>[0-9])/$', "acao.views.detail_comissao"),
    url(r'^comissao/list/$', "acao.views.listar_comissoes"),
    url(r'^frente/$', "acao.views.go_to_frente"),
-   url(r'^frente/(?P<id_frente>[0-9])/$', "acao.views.detail_frente"),
-   url(r'^frente/list/$', "acao.views.listar_frentes"),
+   url(r'^frente/(?P<id_frente>[0-9]+)/$', "acao.views.detail_frente"),
+   url(r'^frente/(?P<id_frente>[0-9])/parlamentares/$', "acao.views.detail_frente_parlamentares"),
+   url(r'^frente/(?P<id_frente>[0-9])/parlamentares/create/$', "acao.views.create_frente_parlamentares"),
+   url(r'^frente/list/$', "acao.views.listar_frente"),
+   url(r'^frente/create/$', "acao.views.create_frente"),
+   url(r'^frente/update/$', "acao.views.update_frente"),
+   url(r'^frente/delete/$', "acao.views.delete_frente"),
 ]
 
 urlpatterns += [

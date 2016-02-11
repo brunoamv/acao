@@ -162,38 +162,39 @@
                         <div class="table-responsive">
                             <form role="form">
                                 <div class="form-group">
-                                    <label>Nome</label>
+                                    <label>Sigla</label>
                                     <input class="form-control" value="{{frente.sigla}}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>UF</label>
+                                    <label>Nome</label>
                                     <input class="form-control" value="{{frente.nome}}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Static Control</label>
-                                    <p class="form-control-static">{{frente.nome}}</p>
+                                    <label>Tipo</label>
+                                    <p class="form-control-static">{{frente.tipo}}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Static Control</label>
-                                    <p class="form-control-static">{{frente.nome}}</p>
+                                    <label>Ano</label>
+                                    <p class="form-control-static">{{frente.ano}}</p>
                                 </div>
 
                                 <!-- Page Heading -->
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h1 class="page-header">
-                                            Detalhes Parlamentares - {{frente.sigla}}
+                                            Parlamentares Frente - {{frente.sigla}}
                                         </h1>
-
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="table-responsive">
+                                             <button id="create_frenteParlamentar"type="button" value="{{frente.id}}" class="btn btn btn-success">Novo Parlamentar</button>
+
                                             <table id='table_parlamentares_frente' class="table table-hover table-striped">
                                                 <thead>
                                                     <tr>
@@ -209,10 +210,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <button type="submit" class="btn btn-default">Submit Button</button>
-                                <button type="reset" class="btn btn-default">Reset Button</button>
-
                             </form>
                         </div>
                     </div>
@@ -231,7 +228,7 @@
 
    {% include 'includeJS.html' %}
 
-<script type="text/javascript" src="{% static 'js/frente.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/frenteParlamentar.js' %}"></script>
   <script type="text/javascript">
     $(function () {
 

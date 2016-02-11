@@ -150,31 +150,37 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Frentes                             
+                            Detalhes da Frentes {{frente.sigla}}
                         </h1>
-                        <button id="create_frente"type="button" class="btn btn btn-success">Nova Frente</button>
-                    </div>    
+
+                    </div>
                 </div>
                 <!-- /.row -->
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">
-                          <table id="tabela_frentes" class="table table-hover table-striped">
-                             <thead>
-                                <tr>
-                                        <th>Sigla</th>
-                                        <th>Nome</th>
-                                        <th>Tipo</th>
-                                        <th>Ano</th>
-                                        <th>Remover</th>
-                                        <th>Atualizar</th>
-                                    </tr>
-                              </thead>
-                              <tbody>
-                                
-                              </tbody>
-                          </table>                              
+                            <form role="form">
+                                <div class="form-group">
+                                    <label>SIGLA</label>
+                                    <input class="form-control" value="{{frente.sigla}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input class="form-control" value="{{frente.nome}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tipo</label>
+                                    <input class="form-control" value="{{frente.tipo}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ano</label>
+                                    <input class="form-control" value="{{frente.ano}}">
+                                </div>
+                                <button id="botao_create"type="submit" class="btn btn-success">Save</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -189,13 +195,14 @@
     </div>
     <!-- /#wrapper -->
 
-    {% include 'includeJS.html' %}
+
+   {% include 'includeJS.html' %}
 
 <script type="text/javascript" src="{% static 'js/frente.js' %}"></script>
   <script type="text/javascript">
     $(function () {
 
-      var frente = new Frente();
+      var frente = new FrenteSave();
 
     });
   </script>

@@ -1,43 +1,7 @@
 from django.db import models
 
-class Comissoes(models.Model):
-    sigla = models.CharField(max_length=200)
-    nome = models.CharField(max_length=200)
-    indicado = models.CharField(max_length=200)
-    condicao = models.CharField(max_length=200)
-
-
-    def toJSON(self):
-      comissoesJSON = {}
-      comissoesJSON['id'] = str(self.pk)
-      comissoesJSON['sigla'] = self.sigla
-      comissoesJSON['nome'] = self.nome
-      comissoesJSON['indicado'] = self.indicado
-      comissoesJSON['condicao'] = self.condicao
-      
-      return comissoesJSON     
-
-class Frentes(models.Model):
-    sigla = models.CharField(max_length=200)
-    nome = models.CharField(max_length=200)
-    tipo = models.CharField(max_length=200)
-    ano = models.DateTimeField('date published') 
-
-
-    def toJSON(self):
-      frentesJSON = {}
-      frentesJSON['id'] = str(self.pk)
-      frentesJSON['sigla'] = self.sigla
-      frentesJSON['nome'] = self.nome
-      frentesJSON['tipo'] = self.tipo
-      frentesJSON['ano'] = self.ano
-
-      return frentesJSON  
-
 
 class Parlamentar(models.Model):
-    comissoes  = models.ManyToManyField(Comissoes)
-    frentes  = models.ManyToManyField(Frentes)
     nome = models.CharField(max_length=200)
     uf = models.CharField(max_length=200)
     celular = models.CharField(max_length=200)
@@ -65,9 +29,56 @@ class Parlamentar(models.Model):
       return parlamentarJSON
 
 
-   
-    #partido = models.CharField(max_length=200)]
- 
+class Comissoes(models.Model):
+    sigla = models.CharField(max_length=200)
+    nome = models.CharField(max_length=200)
+    indicado = models.CharField(max_length=200)
+    condicao = models.CharField(max_length=200)
+
+
+    def toJSON(self):
+      comissoesJSON = {}
+      comissoesJSON['id'] = str(self.pk)
+      comissoesJSON['sigla'] = self.sigla
+      comissoesJSON['nome'] = self.nome
+      comissoesJSON['indicado'] = self.indicado
+      comissoesJSON['condicao'] = self.condicao
+      
+      return comissoesJSON     
+
+class Frente(models.Model):
+    sigla = models.CharField(max_length=200)
+    nome = models.CharField(max_length=200)
+    tipo = models.CharField(max_length=200)
+    ano = models.DateTimeField('date published') 
+    parlamentar = models.ManyToManyField(Parlamentar, through='FrenteParlamentar')
+
+    def toJSON(self):
+      frenteJSON = {}
+      frenteJSON['id'] = str(self.pk)
+      frenteJSON['sigla'] = self.sigla
+      frenteJSON['nome'] = self.nome
+      frenteJSON['tipo'] = self.tipo
+      frenteJSON['ano'] = self.ano
+
+      return frenteJSON  
+
+class FrenteParlamentar(models.Model):
+    frente = models.ForeignKey(Frente, on_delete=models.CASCADE)
+    parlamentar = models.ForeignKey(Parlamentar, on_delete=models.CASCADE)
+    date_joined = models.DateField()
+    invite_reason = models.CharField(max_length=64)
+
+    def toJSON(self):
+      frenteParlamentar = {}
+      frenteParlamentar['id'] = str(self.pk)
+      frenteParlamentar['frente'] = self.frente_id
+      frenteParlamentar['parlamentar'] = self.parlamentar_id
+      frenteParlamentar['date_joined'] = self.date_joined
+      frenteParlamentar['invite_reason'] = self.invite_reason
+
+      return frenteParlamentar  
+
 #class Choice(models.Model):
 #    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 #    choice_text = models.CharField(max_length=200)
