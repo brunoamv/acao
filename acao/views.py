@@ -84,6 +84,11 @@ def create_frente_parlamentares(request,id_frente):
 def detail_frente(request, id_frente):
     responseDict = {}
     frente = Frente.objects.get(id=id_frente)
+    return jsonResponse(frente.toJSON());
+
+def detail_frente_(request, id_frente):
+    responseDict = {}
+    frente = Frente.objects.get(id=id_frente)
     responseDict["frente"] = frente.toJSON()
     return render_to_response('frente_detalhe.html', responseDict, context_instance=RequestContext(request))
 
