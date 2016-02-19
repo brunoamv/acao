@@ -11,8 +11,16 @@ var MenuView = function (contentView) {
 
     $(".menuLink").click(function(e){
     	self.contentView.dashboardView.hide();
+        self.contentView.parlamentaresView.hide();
+        self.contentView.parlamentaresView.parlamentarDetailsView.hide();
+        self.contentView.parlamentaresView.parlamentarCreateView.hide();
+        self.contentView.comissoesView.hide();
+        self.contentView.comissoesView.comissaoDetailsView.hide();
+        self.contentView.comissoesView.comissaoCreateView.hide();
         self.contentView.frentesView.hide();
         self.contentView.frentesView.frenteDetailsView.hide();
+        self.contentView.frentesView.frenteUpdateView.hide();
+        self.contentView.frentesView.frenteCreateView.hide();
     });
 
     $("#dashboardMenuLink").click(function(e){
@@ -20,7 +28,18 @@ var MenuView = function (contentView) {
 
     });
 
+    $("#parlamentarMenuLink").click(function(e){
+        self.contentView.parlamentaresView.show();
+    });
+
+    $("#comissoesMenuLink").click(function(e){
+        self.contentView.comissoesView.show();
+    });
+
     $("#frentesMenuLink").click(function(e){
     	self.contentView.frentesView.show();
     });
+
+
+
 }

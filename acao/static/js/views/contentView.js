@@ -5,9 +5,17 @@ var ContentView = function () {
 
 	this.dashboardView = new DashboardView(); 
 	this.frentesView = new FrentesView(); 
+	this.parlamentaresView = new ParlamentaresView(); 
+	this.comissoesView = new ComissoesView(); 
+
+
 
 	this.dashboardView.load();
 	this.frentesView.load();
-	
+	this.parlamentaresView.load();
+	this.comissoesView.load();
+
+
+
 	this.dashboardView.show();
 }

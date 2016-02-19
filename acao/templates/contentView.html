@@ -5,15 +5,23 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div id="dashboardView" style="display:none;"></div>
+                <div id="parlamentaresView" style="display:none;"></div>
+                <div id="parlamentarDetailsView" style="display:none;"></div>
+                <div id="parlamentarCreateView" style="display:none;"></div>
                 <div id="frentesView" style="display:none;"></div>
                 <div id="frenteDetailsView" style="display:none;"></div>
+                <div id="frenteUpdateView" style="display:none;"></div>
+                <div id="frenteCreateView" style="display:none;"></div>
+                <div id="comissoesView" style="display:none;"></div>
+                <div id="comissaoDetailsView" style="display:none;"></div>
+                <div id="comissaoCreateView" style="display:none;"></div>
+                <div id="frenteCreateParlamentarView" style="display:none;"></div>
             </div>
         </div>
     </div>
 </script>
 
-<script type="text/html" id='dashboardViewTemplate'>
-    <div id="wrapper"> 
+<script type="text/html" id='dashboardViewTemplate'> 
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -244,23 +252,85 @@
         </div>
         <!-- /#page-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
-
 </script>
+
+
 
 <script type="text/html" id='frenteViewTemplate'>
-    <tr id="<%=id%>">
-        <td><%= nome %></td>
-        <td><%= sigla %></td>
+    <tr>
+        <td class="details" id="<%=id%>"><%= sigla %></td>
+        <td class="details" id="<%=id%>"><%= nome %></td>
         <td><%= tipo %></td>
         <td><%= ano %></td>
-        <td><font color="red"><i class="fa fa-remove"></i></font></td>
-        <td><font color="blue"><i class="fa fa-check"></i></font></td>
-    </tr>
+        <td class="delete" id="<%=id%>"><font color="red"><i class="fa fa-remove"></i></font></td>
+        <td class="update" id="<%=id%>"><font color="blue"><i class="fa fa-check"></i></font></td>
+    </tr>   
+</script>       
+
+<script type="text/html" id='frenteUpdateViewTemplate'>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                 <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                            <div id="page-wrapper">
+
+                                    <div class="container-fluid">
+
+                                        <!-- Page Heading -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                    Update da Frentes
+                                                </h1>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                    <form class="form-inline" role="form">
+                                                         <div class="form-group">
+                                                            <label>ID</label>
+                                                            <input type='hidden' id="update_frente_id" value="<%= id %>" class="form-control-static" >       
+                                                            
+                                                         </div>   
+                                                        <div class="form-group">
+                                                            <label>Sigla</label>
+                                                            <input id="update_frente_sigla" class="form-control" value="<%= sigla %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Nome</label>
+                                                            <input id="update_frente_nome" class="form-control" value="<%= nome %>">
+                                                        </div>
+                                                    </form>    
+                                                    <form class="form-inline"role="form">
+                                                        <div class="form-group">
+                                                            <label>Tipo</label>
+                                                            <input id="update_frente_tipo" class="form-control" value="<%= tipo %>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Ano</label>  
+                                                            <input id="update_frente_ano" class="form-control" value="<%= ano %>">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <button id="botao_update_frente" type="submit" class="btn btn-success">Save</button> 
+                            </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
 </script>
+
+
+
 <script type="text/html" id='frenteDetailsViewTemplate'>
-    <div id="wrapper">
         <div id="page-wrapper">
             <div class="container-fluid">
                  <!-- Page Heading -->
@@ -284,7 +354,8 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="table-responsive">
-                                                    <form role="form">
+                                                    <form class="form-inline" role="form">
+                                    
                                                         <div class="form-group">
                                                             <label>Sigla</label>
                                                             <input class="form-control" value="<%= sigla %>">
@@ -292,17 +363,332 @@
 
                                                         <div class="form-group">
                                                             <label>Nome</label>
-                                                            <input class="form-control" value="">
+                                                            <input class="form-control" value="<%= nome %>">
                                                         </div>
-
+                                                    </form>    
+                                                    <form class="form-inline"role="form">
                                                         <div class="form-group">
                                                             <label>Tipo</label>
-                                                            <p class="form-control-static"></p>
+                                                            <input class="form-control" value="<%= tipo %>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Ano</label>  
+                                                            <input class="form-control" value="<%= ano %>">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                        <!-- Page Heading -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                    Parlamentares Frente - <%= sigla %>
+                                                </h1>
+                                            </div>
+                                        </div>
+        
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                        <div id='frenteParlamentaresDetails'>
+                                                            <button id="create_frenteParlamentar"type="button" value="<%= id %>" class="btn btn btn-success">Novo     Parlamentar</button>           
+                                                             <table id='frenteParlamentaresDetailsView' class="table table-      hover table-striped">   
+                                                            <thead>     
+                                                                <tr>       
+                                                                         <th>Nome</th>      
+                                                                         <th>UF</th>    
+                                                                         <th>Telefone</th>    
+                                                                         <th>E-mail</th>
+                                                                </tr>      
+                                                            </thead>       
+                                                            <tbody>     
+                                                            </tbody>  
+                                                        </div>
+                                                    </table>        
+                                                </div>      
+                                            </div>      
+                                        </div>      
+                                    </div>    
+                            </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+</script>
+
+
+<script type="text/html" id='frenteCreateParlamentarViewTemplate'>
+  
+</script>
+
+<script type="text/html" id='frenteCreateViewTemplate'>
+
+      <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Detalhes da Frentes {{frente.sigla}}
+                        </h1>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <div class="form-group">
+                                <label>SIGLA</label>
+                                <input id="create_frente_sigla" class="form-control" value="">
+                            </div>
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input id="create_frente_nome" class="form-control" value="">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <input id="create_frente_tipo" class="form-control" value="">
+                            </div>
+
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    
+                                    <input id="create_frente_ano" class="form-control" value="">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <button id="botao_create_frente" type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+</script>
+
+
+<script type="text/html" id='frentesViewTemplate'>
+
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Frentes                 
+
+                        </h1>
+
+                        <button id="create_frente" type="button" class="btn btn btn-success">Nova Frente</button>
+
+                    </div>    
+
+                </div>
+
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                          <table id="tabela_frentes" class="table table-hover table-striped">
+                              <thead>
+                                <tr>
+                                        <th>Sigla</th>
+                                        <th>Nome</th>
+                                        <th>Tipo</th>
+                                        <th>Ano</th>
+                                        <th>Remover</th>
+                                        <th>Atualizar</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                <tr id="tableRowSpinner">
+                                    <td colspan="6"><center><img src="{% static 'imgs/ajax-loader.gif'%}"></
+                                    center></td>
+                                </tr>
+                              </tbody>
+                          </table>                              
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+
+        <!-- /#page-wrapper -->
+</script>
+
+<script type="text/html" id='parlamentaresViewTemplate'>
+
+
+       <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Parlamentares
+                        </h1>
+                        <button id="create_parlamentar"type="button" class="btn btn btn-success">Novo Parlamentar</button>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table id='table_parlamentares' class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>nome</th>
+                                        <th>uf</th>
+                                        <th>celular</th>
+                                        <th>telefone</th>
+                                        <th>fax</th>
+                                        <th>email</th>                            
+                                        <th>gabinete</th>
+                                        <th>Remover</th>
+                                        <th>Atualizar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+</script>
+
+<script type="text/html" id='parlamentarViewTemplate'>
+    <tr>                                        
+        <td class="details_parlamentar" id="<%=id%>" ><%= nome %></td>
+        <td class="details_parlamentar" id="<%=id%>"><%= uf %></td>
+        <td class="details_parlamentar" id="<%=id%>"><%= celular %></td>
+        <td class="details_parlamentar" id="<%=id%>"><%= telefone %></td>
+        <td><%= fax %></td>
+        <td><%= email %></td>
+        <td><%= gabinete %></td>
+        <td class="delete_parlamentar" id="<%=id%>"><font color="red"><i class="fa fa-remove"></i></font></td>
+        <td class="update_parlamentar" id="<%=id%>"><font color="blue"><i class="fa fa-check"></i></font></td>
+    </tr>
+</script>
+
+
+<script type="text/html" id='parlamentarDetailsViewTemplate'>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                 <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                            <div id="page-wrapper">
+
+                                    <div class="container-fluid">
+
+                                        <!-- Page Heading -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                    Detalhes da Parlamentar
+                                                </h1>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Nome</label>
+                                                            <input class="form-control" value="<%= nome %>">
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label>Ano</label>
-                                                            <p class="form-control-static"></p>
+                                                            <label>UF</label>
+                                                            <input class="form-control" value="<%= uf %>">
+                                                        </div>
+                                                     </form>   
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Celular</label><br>
+                                                            <p class="form-control-static"><%= celular %></p>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Telefone</label></br>
+                                                            <p class="form-control-static"><%= telefone %></p>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Fax</label><br>
+                                                            <p class="form-control-static"><%= fax %></p>
+                                                        </div>
+                                                     </form>   
+                                                     <form class="form-inline" role="form">    
+
+                                                        <div class="form-group">
+                                                            <label>Email</label>
+                                                            <p class="form-control-static"><%= email %></p>
+                                                        </div>
+                                                    </form>                                                        
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Titular</label>
+                                                            <p class="form-control-static"><%= titular %></p>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Gabinete</label>
+                                                            <p class="form-control-static"><%= gabinete %></p>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Anexo</label>
+                                                            <p class="form-control-static"><%= anexo %></p>
+                                                        </div>
+                                                    </form>   
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Profissoes</label>
+                                                            <p class="form-control-static"><%= profissoes %></p>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Aniversario</label>
+                                                            <p class="form-control-static"><%= aniversario %></p>
+                                                        </div>
+                                                    </form>    
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>nome_civil</label>
+                                                            <p class="form-control-static"><%= nome_civil %></p>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Tratamento</label>
+                                                            <p class="form-control-static"><%= tratamento %></p>
                                                         </div>
 
                                                     </form>
@@ -315,107 +701,274 @@
                 </div>
             </div>
         </div>
-    </div>
 </script>
 
 
+<script type="text/html" id='parlamentarCreateViewTemplate'>
 
-<script type="text/html" id='frentesViewTemplate'>
-
-    <div id="wrapper">
-
-        <div id="page-wrapper">
-
-
-
+      <div id="page-wrapper">
             <div class="container-fluid">
-
-
-
                 <!-- Page Heading -->
-
                 <div class="row">
-
                     <div class="col-lg-12">
-
                         <h1 class="page-header">
-
-                            Frentes                             
-
+                            Detalhes da Parlamentar
                         </h1>
 
-                        <button id="create_frente"type="button" class="btn btn btn-success">Nova Frente</button>
-
-                    </div>    
-
+                    </div>
                 </div>
-
                 <!-- /.row -->
 
 
 
                 <div class="row">
-
                     <div class="col-lg-12">
-
                         <div class="table-responsive">
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Nome</label>
+                                                            <input id="create_parlamentar_nome" class="form-control" value="">
+                                                        </div>
 
-                          <table id="tabela_frentes" class="table table-hover table-striped">
+                                                        <div class="form-group">
+                                                            <label>UF</label>
+                                                            <input id="create_parlamentar_uf" class="form-control" value="">
+                                                        </div>
+                                                     </form>   
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Celular</label>
+                                                            <input id="create_parlamentar_celular"class="form-control" value="">
+                                                        </div>
 
-                             <thead>
+                                                        <div class="form-group">
+                                                            <label>Telefone</label>
+                                                            <input id="create_parlamentar_telefone"class="form-control" value="">
+                                                        </div>
 
-                                <tr>
+                                                        <div class="form-group">
+                                                            <label>Fax</label>
+                                                            <input id="create_parlamentar_fax"class="form-control" value="">
+                                                        </div>
+                                                     </form>   
+                                                     <form class="form-inline" role="form">    
 
-                                        <th>Sigla</th>
+                                                        <div class="form-group">
+                                                            <label>Email</label>
+                                                            <input id="create_parlamentar_email" class="form-control" value="">
+                                                        </div>
+                                                    </form>                                                        
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Titular</label>
+                                                            <input id="create_parlamentar_titular" class="form-control" value="">
+                                                        </div>
 
-                                        <th>Nome</th>
+                                                        <div class="form-group">
+                                                            <label>Gabinete</label>
+                                                            <input id="create_parlamentar_gabinete" class="form-control" value="">
+                                                        </div>
 
-                                        <th>Tipo</th>
+                                                        <div class="form-group">
+                                                            <label>Anexo</label>
+                                                            <input id="create_parlamentar_anexo" class="form-control" value="">
+                                                        </div>
+                                                    </form>   
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Profissoes</label>
+                                                            <input id="create_parlamentar_profissoes" class="form-control" value="">
+                                                        </div>
 
-                                        <th>Ano</th>
+                                                        <div class="form-group">
+                                                            <label>Aniversario</label>
+                                                            <input id="create_parlamentar_aniversario"class="form-control" value="">
+                                                        </div>
+                                                    </form>    
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>nome_civil</label>
+                                                            <input id="create_parlamentar_nome_civil" class="form-control" value="">
+                                                        </div>
 
-                                        <th>Remover</th>
+                                                        <div class="form-group">
+                                                            <label>Tratamento</label>
+                                                            <input id="create_parlamentar_tratamento" class="form-control" value="">
+                                                        </div>
 
-                                        <th>Atualizar</th>
-
-                                    </tr>
-
-                              </thead>
-
-                              <tbody>
-
-                                <tr id="tableRowSpinner">
-
-                                    <td colspan="6"><center><img src="{% static 'imgs/ajax-loader.gif'%}"></
-                                    center></td>
-
-                                </tr>
-
-                              </tbody>
-
-                          </table>                              
-
+                                                    </form>
+                                <button id="botao_create_parlamentar"type="submit" class="btn btn-success">Save</button>
+                
                         </div>
-
                     </div>
-
                 </div>
                 <!-- /.row -->
 
-
-
             </div>
-
             <!-- /.container-fluid -->
 
+        </div>
+        <!-- /#page-wrapper -->
+</script>
 
+<script type="text/html" id='comissoesViewTemplate'>
+       <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Comissoes
+                        </h1>
+                        <button id="create_comissao"type="button" class="btn btn btn-success">Nova Comissao</button>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table id='table_comissoes' class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sigla</th>
+                                        <th>nome</th>
+                                        <th>Indicado</th>
+                                        <th>Condicao</th>
+                                        <th>Remover</th>
+                                        <th>Atualizar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
 
         </div>
-
         <!-- /#page-wrapper -->
+</script>
+
+<script type="text/html" id='comissaoViewTemplate'>
+    <tr id="<%=id%>">
+        <td><%= sigla %></td>
+        <td><%= nome %></td>
+        <td><%= indicado %></td>
+        <td><%= condicao %></td>
+        <td><font color="red"><i class="fa fa-remove"></i></font></td>
+        <td><font color="blue"><i class="fa fa-check"></i></font></td>
+    </tr>
+</script>
 
 
+<script type="text/html" id='comissaoDetailsViewTemplate'>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                 <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                            <div id="page-wrapper">
 
-    </div>
-    <!-- /#wrapper -->
+                                    <div class="container-fluid">
+
+                                        <!-- Page Heading -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                    Detalhes da Comissao
+                                                </h1>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <label>SIGLA</label>
+                                                            <input class="form-control" value="<%= sigla %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>UF</label>
+                                                            <input class="form-control" value="<%= nome %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Indicado</label>
+                                                            <p class="form-control-static"><%= indicado %></p>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Condicao</label>
+                                                            <p class="form-control-static"><%= condicao %></p>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                            </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+</script>
+
+
+<script type="text/html" id='comissaoCreateViewTemplate'>
+
+      <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Create Comissao
+                        </h1>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label>SIGLA</label>
+                                    <input class="form-control" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input class="form-control" value="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Indicado</label>
+                                    <input class="form-control" value="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Condicao</label>
+                                    <input class="form-control" value="f">
+                                </div>
+                                <button id="create_comissao"type="submit" class="btn btn-success">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
 </script>

@@ -25,6 +25,14 @@ class Parlamentar(models.Model):
       parlamentarJSON['telefone'] = self.telefone
       parlamentarJSON['celular'] = self.celular
       parlamentarJSON['email'] = self.email
+      parlamentarJSON['fax'] = self.fax
+      parlamentarJSON['titular'] = self.titular
+      parlamentarJSON['gabinete'] = self.gabinete
+      parlamentarJSON['anexo'] = self.anexo
+      parlamentarJSON['aniversario'] = str(self.aniversario)
+      parlamentarJSON['profissoes'] = self.profissoes
+      parlamentarJSON['nome_civil'] = self.nome_civil
+      parlamentarJSON['tratamento'] = self.tratamento
       
       return parlamentarJSON
 
@@ -59,7 +67,7 @@ class Frente(models.Model):
       frenteJSON['sigla'] = self.sigla
       frenteJSON['nome'] = self.nome
       frenteJSON['tipo'] = self.tipo
-      frenteJSON['ano'] = self.ano
+      frenteJSON['ano'] = str(self.ano)
 
       return frenteJSON  
 
