@@ -58,6 +58,7 @@ ParlamentarCreateView.prototype.createParlamentar = function() {
 		//SUCESSO = TRUE
 		self.parlamentar_views.load();
 		self.parlamentar_views.show();
+		self.hide();
 	}
 
 	console.log("parlamentar_obj");

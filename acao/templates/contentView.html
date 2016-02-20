@@ -7,6 +7,7 @@
                 <div id="dashboardView" style="display:none;"></div>
                 <div id="parlamentaresView" style="display:none;"></div>
                 <div id="parlamentarDetailsView" style="display:none;"></div>
+                <div id="parlamentarUpdateView" style="display:none;"></div>
                 <div id="parlamentarCreateView" style="display:none;"></div>
                 <div id="frentesView" style="display:none;"></div>
                 <div id="frenteDetailsView" style="display:none;"></div>
@@ -15,6 +16,7 @@
                 <div id="comissoesView" style="display:none;"></div>
                 <div id="comissaoDetailsView" style="display:none;"></div>
                 <div id="comissaoCreateView" style="display:none;"></div>
+                <div id="comissaoUpdateView" style="display:none;"></div>
                 <div id="frenteCreateParlamentarView" style="display:none;"></div>
             </div>
         </div>
@@ -811,15 +813,146 @@
         <!-- /#page-wrapper -->
 </script>
 
+<script type="text/html" id='parlamentarUpdateViewTemplate'>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                 <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                            <div id="page-wrapper">
+
+                                    <div class="container-fluid">
+
+                                        <!-- Page Heading -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                    Update da Parlamentar
+                                                </h1>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>ID</label>
+                                                            <input type='hidden' id="update_parlamentar_id" value="<%= id %>" class="form-control-static" > 
+                                                        </div>  
+                                                        <div class="form-group">
+                                                            <label>Nome</label>
+                                                            <input id="update_parlamentar_nome" class="form-control" value="<%= nome %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>UF</label>
+                                                            <input id="update_parlamentar_uf" class="form-control" value="<%= uf %>">
+                                                        </div>
+                                                     </form>   
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Celular</label>
+                                                            <input id="update_parlamentar_celular"class="form-control" value="<%= celular %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Telefone</label>
+                                                            <input id="update_parlamentar_telefone"class="form-control" value="<%= telefone %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Fax</label>
+                                                            <input id="update_parlamentar_fax"class="form-control" value="<%= fax %>">
+                                                        </div>
+                                                     </form>   
+                                                     <form class="form-inline" role="form">    
+
+                                                        <div class="form-group">
+                                                            <label>Email</label>
+                                                            <input id="update_parlamentar_email" class="form-control" value="<%= email %>">
+                                                        </div>
+                                                    </form>                                                        
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Titular</label>
+                                                            <input id="update_parlamentar_titular" class="form-control" value="<%= titular %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Gabinete</label>
+                                                            <input id="update_parlamentar_gabinete" class="form-control" value="<%= gabinete %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Anexo</label>
+                                                            <input id="update_parlamentar_anexo" class="form-control" value="<%= anexo %>">
+                                                        </div>
+                                                    </form>   
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>Profissoes</label>
+                                                            <input id="update_parlamentar_profissoes" class="form-control" value="<%= profissoes %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Aniversario</label>
+                                                            <input id="update_parlamentar_aniversario"class="form-control" value="<%= aniversario %>">
+                                                        </div>
+                                                    </form>    
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group">
+                                                            <label>nome_civil</label>
+                                                            <input id="update_parlamentar_nome_civil" class="form-control" value="<%= nome_civil %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Tratamento</label>
+                                                            <input id="update_parlamentar_tratamento" class="form-control" value="<%= tratamento %>">
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <button id="botao_update_parlamentar" type="submit" class="btn btn-success">Save</button> 
+                            </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+</script>
+
+
+
+<script type="text/html" id='comissaoViewTemplate'>
+    <tr>
+        <td class="details_comissao" id="<%=id%>"><%= sigla %></td>
+        <td class="details_comissao" id="<%=id%>"><%= nome %></td>
+        <td class="details_comissao" id="<%=id%>"><%= indicado %></td>
+        <td><%= condicao %></td>
+        <td  class="delete_comissao" id="<%=id%>"><font color="red"><i class="fa fa-remove"></i></font></td>
+        <td  class="update_comissao" id="<%=id%>"><font color="blue"><i class="fa fa-check"></i></font></td>
+    </tr>
+</script>
+
+
 <script type="text/html" id='comissoesViewTemplate'>
+
        <div id="page-wrapper">
             <div class="container-fluid">
+
+
                 <!-- Page Heading -->
+                <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Comissoes
+                            Comissao
                         </h1>
                         <button id="create_comissao"type="button" class="btn btn btn-success">Nova Comissao</button>
+
                     </div>
                 </div>
                 <!-- /.row -->
@@ -850,17 +983,6 @@
 
         </div>
         <!-- /#page-wrapper -->
-</script>
-
-<script type="text/html" id='comissaoViewTemplate'>
-    <tr id="<%=id%>">
-        <td><%= sigla %></td>
-        <td><%= nome %></td>
-        <td><%= indicado %></td>
-        <td><%= condicao %></td>
-        <td><font color="red"><i class="fa fa-remove"></i></font></td>
-        <td><font color="blue"><i class="fa fa-check"></i></font></td>
-    </tr>
 </script>
 
 
@@ -910,6 +1032,68 @@
                                                         </div>
 
                                                     </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                            </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+</script>
+
+
+<script type="text/html" id='comissaoUpdateViewTemplate'>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                 <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                            <div id="page-wrapper">
+
+                                    <div class="container-fluid">
+
+                                        <!-- Page Heading -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                    Update da Comissao
+                                                </h1>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <input id="update_comissao_id"class="form-control" type="hidden" value="<%= id %>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>SIGLA</label>
+                                                            <input id="update_comissao_sigla" class="form-control" value="<%= sigla %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>UF</label>
+                                                            <input id="update_comissao_nome" class="form-control" value="<%= nome %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Indicado</label>
+                                                            <input id="update_comissao_indicado" class="form-control" value="<%= indicado %>">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Condicao</label>
+                                                            <input id="update_comissao_condicao" class="form-control" value="<%= condicao %>">
+                                                        </div>
+                                                    </form>
+                                                      <button id="botao_update_comissao" type="button" class="btn btn-success">Save</button> 
                                                 </div>
                                             </div>
                                         </div>
@@ -943,23 +1127,23 @@
                             <form role="form">
                                 <div class="form-group">
                                     <label>SIGLA</label>
-                                    <input class="form-control" value="">
+                                    <input id="create_comissao_sigla"class="form-control" value="">
                                 </div>
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input class="form-control" value="">
+                                    <input id="create_comissao_nome" class="form-control" value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Indicado</label>
-                                    <input class="form-control" value="">
+                                    <input id="create_comissao_indicado" class="form-control" value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Condicao</label>
-                                    <input class="form-control" value="f">
+                                    <input id="create_comissao_condicao" class="form-control" value="">
                                 </div>
-                                <button id="create_comissao"type="submit" class="btn btn-success">Save</button>
+                                <button id="botao_create_comissao" type="button" class="btn btn-success">Save</button>
                             </form>
                         </div>
                     </div>

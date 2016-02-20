@@ -71,6 +71,46 @@ def create_parlamentar(request):
         print e
         return jsonResponse({'success': 'false'})
 
+def update_parlamentar(request):
+    id_to_save = request.POST.get('id_to_save')
+    nome_to_save = request.POST.get('nome_to_save')
+    uf_to_save = request.POST.get('uf_to_save')
+    celular_to_save = request.POST.get('celular_to_save')
+    telefone_to_save = request.POST.get('telefone_to_save')
+    fax_to_save = request.POST.get('fax_to_save')
+    titular_to_save = request.POST.get('titular_to_save')
+    gabinete_to_save = request.POST.get('gabinete_to_save')
+    anexo_to_save = request.POST.get('anexo_to_save')
+    profissoes_to_save = request.POST.get('profissoes_to_save')
+    aniversario_to_save = request.POST.get('aniversario_to_save')
+    nome_civil_to_save = request.POST.get('nome_civil_to_save')
+    tratamento_to_save = request.POST.get('tratamento_to_save')
+
+    print request.POST.get('nome_to_save')
+    print nome_to_save
+    print 'vai'
+
+    parlamentar_to_save = Parlamentar.objects.get(id=id_to_save)
+    parlamentar_to_save.nome = nome_to_save
+    parlamentar_to_save.uf = uf_to_save
+    parlamentar_to_save.celular = celular_to_save
+    parlamentar_to_save.telefone = telefone_to_save
+    parlamentar_to_save.fax = fax_to_save
+    parlamentar_to_save.titular = titular_to_save
+    parlamentar_to_save.gabinete = gabinete_to_save
+    parlamentar_to_save.anexo = anexo_to_save
+    parlamentar_to_save.profissoes = profissoes_to_save
+    parlamentar_to_save.aniversario = aniversario_to_save
+    parlamentar_to_save.nome_civil = nome_civil_to_save
+    parlamentar_to_save.tratamento = tratamento_to_save
+    print parlamentar_to_save.nome
+    try:
+        parlamentar_to_save.save()
+        return jsonResponse({'success': 'true'})
+    except Exception, e:
+        print e
+        return jsonResponse({'success': 'false'})
+
 def delete_parlamentar(request):
     id_parlamentar = request.POST.get('id_to_delete')
     parlamentar = Parlamentar.objects.get(pk=id_parlamentar)
@@ -101,6 +141,55 @@ def detail_comissao(request,id_comissao):
     responseDict = {}
     comissao = Comissoes.objects.get(id=id_comissao)
     return jsonResponse(comissao.toJSON())
+
+def create_comissao(request):
+    sigla_to_save = request.POST.get('sigla_to_save')
+    nome_to_save = request.POST.get('nome_to_save')
+    indicado_to_save = request.POST.get('indicado_to_save')
+    condicao_to_save = request.POST.get('condicao_to_save')
+
+    comissao_to_save = Comissoes()
+    comissao_to_save.sigla = sigla_to_save
+    comissao_to_save.nome = nome_to_save
+    comissao_to_save.indicado = indicado_to_save
+    comissao_to_save.condicao = condicao_to_save
+    try:
+        comissao_to_save.save()
+        return jsonResponse({'success': 'true'})
+    except Exception, e:
+        print e
+        return jsonResponse({'success': 'false'})
+
+def delete_comissao(request):
+    id_comissao = request.POST.get('id_to_delete')
+    comissao = Comissoes.objects.get(pk=id_comissao)
+    try:
+        comissao.delete()
+        return jsonResponse({'success': 'true'})
+    except Exception, e:
+        print e
+        return jsonResponse({'success': 'false'})
+
+    return jsonResponse({'success': 'true'})
+
+def update_comissao(request):
+    id_to_update = request.POST.get('id_to_save')
+    sigla_to_save = request.POST.get('sigla_to_save')
+    nome_to_save = request.POST.get('nome_to_save')
+    indicado_to_save = request.POST.get('indicado_to_save')
+    condicao_to_save = request.POST.get('condicao_to_save')
+
+    comissao_to_save = Comissoes.objects.get(id=id_to_update)
+    comissao_to_save.sigla = sigla_to_save
+    comissao_to_save.nome = nome_to_save
+    comissao_to_save.indicado = indicado_to_save
+    comissao_to_save.condicao = condicao_to_save
+    try:
+        comissao_to_save.save()
+        return jsonResponse({'success': 'true'})
+    except Exception, e:
+        print e
+        return jsonResponse({'success': 'false'})
 
 def go_to_frente(request):
     responseDict = {}

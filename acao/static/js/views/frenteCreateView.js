@@ -43,6 +43,7 @@ FrenteCreateView.prototype.createFrente = function() {
 		//SUCESSO = TRUE
 		self.frentes_views.load();
 		self.frentes_views.show();
+		self.hide();
 	}
 
 	this.frente_model.saveFrente(frente_obj, sucess_function);
