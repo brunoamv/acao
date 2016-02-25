@@ -68,7 +68,7 @@ ParlamentaresView.prototype.load = function() {
             console.log(id_parlamentar_clicado);
             self.showParlamentarDetails(id_parlamentar_clicado);
         });
-
+        
 
         $("#create_parlamentar").click(function(e){
             id_parlamentar_clicado = e.currentTarget.id;

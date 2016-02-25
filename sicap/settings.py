@@ -71,9 +71,41 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sicap.wsgi.application'
 
+ENVIRONMENT='online'
+
+if ENVIRONMENT=='online':
+ # SECURITY WARNING: don't run with debug turned on in production!
+ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')    
+ DEBUG = True
+ STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+ DB_HOST='.us-west-2.rds.amazonaws.com'
+ DB_USER=''
+ DB_PASSWORD=''
+
+elif ENVIRONMENT=='offline':
+ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')  
+ DEBUG = True
+ STATIC_URL = '/static/'
+ DB_HOST='127.0.0.1'
+ DB_USER='root'
+ DB_PASSWORD='Timtones09'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+
+DATABASES = {    
+  'default' : {
+      'ENGINE': 'django.db.backends.mysql', 
+      'NAME': 'sicap',
+      'USER': DB_USER,
+      'PASSWORD': DB_PASSWORD,
+      'HOST': DB_HOST,   # Or an IP Address that your DB is hosted on
+      'PORT': '3306',
+      'OPTIONS': {
+         'init_command': 'SET sql_mode=""'
+      },
+  }
+}
 
 DATABASES = {
     'default': {

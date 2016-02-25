@@ -20,6 +20,7 @@ FrenteDetailsView.prototype.render = function(frente_details) {
    	$("#frenteParlamentaresDetailsView tbody tr").click(function(e){
 			id_parlamentar_clicado = e.currentTarget.id;
 			console.log(id_frente_clicado);
+			console.log("FOI ESSE ID");
 			self.showParlamentarDetails(id_parlamentar_clicado);
 			//window.location.href = "/frente/"+id_frente_clicado+"/";
 	});
