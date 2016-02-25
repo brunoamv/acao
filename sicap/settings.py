@@ -25,7 +25,7 @@ SECRET_KEY = '(dyjp&2%i1w1*1=16c$$!zoz4zyxwdmd7)bx2)jfo-yaros7)q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sicap.herokuapp.com']
 
 
 # Application definition
