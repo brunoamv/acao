@@ -1,0 +1,17 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title>OPA</title>
+</head>
+<body>
+	<form method="POST" action="/auth/">
+		{% csrf_token %}
+           	<input type="hidden" name="next" value="{{request.GET.next}}">
+		<div>
+			<input type="text" name="email"></input>
+			<input type="password" name="pwd"></input>
+			<input type="submit"></input>
+		</div>
+	</form>
+</body>
+</html>

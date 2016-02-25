@@ -26,3 +26,7 @@ Comissao.prototype.updateComissaoSave = function(comissao_obj, sucess_function) 
 	console.log(comissao_obj);
 	$.ajax({method: "POST", url: "/comissao/update/", data: comissao_obj, success:sucess_function});	
 };
+
+Comissao.prototype.loadDetails_parlamentares = function(id_to_detail, sucess_function) {
+	$.ajax({url: "/comissao/"+id_to_detail+"/parlamentares/", success:sucess_function});	
+};

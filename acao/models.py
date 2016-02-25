@@ -42,7 +42,7 @@ class Comissoes(models.Model):
     nome = models.CharField(max_length=200)
     indicado = models.CharField(max_length=200)
     condicao = models.CharField(max_length=200)
-
+    parlamentar = models.ManyToManyField(Parlamentar, through='ComissaoParlamentar')
 
     def toJSON(self):
       comissoesJSON = {}
@@ -53,6 +53,23 @@ class Comissoes(models.Model):
       comissoesJSON['condicao'] = self.condicao
       
       return comissoesJSON     
+
+
+class ComissaoParlamentar(models.Model):
+    comissao = models.ForeignKey(Comissoes, on_delete=models.CASCADE)
+    parlamentar = models.ForeignKey(Parlamentar, on_delete=models.CASCADE)
+    date_joined = models.DateField()
+    invite_reason = models.CharField(max_length=64)
+
+    def toJSON(self):
+      comissaoParlamentar = {}
+      comissaoParlamentar['id'] = str(self.pk)
+      comissaoParlamentar['comissao'] = self.comissao_id
+      comissaoParlamentar['parlamentar'] = self.parlamentar_id
+      comissaoParlamentar['date_joined'] = self.date_joined
+      comissaoParlamentar['invite_reason'] = self.invite_reason
+
+      return frenteParlamentar  
 
 class Frente(models.Model):
     sigla = models.CharField(max_length=200)

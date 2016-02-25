@@ -36,6 +36,7 @@ ComissaoUpdateView.prototype.show = function() {
 };
 
 ComissaoUpdateView.prototype.hide = function() {
+	console.log("CHEGOU NO hide");
 	$("#comissaoUpdateView").hide();
 };
 

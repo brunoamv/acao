@@ -1,22 +1,13 @@
 var FrenteDetailsView = function () {
 	var self = this;
 	this.frentesTemplate = $("#frenteDetailsViewTemplate").html();
-	this.frentesParlamentaresTemplate = $("#frenteParlamentaresDetailsViewTemplate").html();
-	this.frentesParlamentaresCreateTemplate = $("#frenteCreateParlamentarViewTemplate").html();
-
+	//this.frentesParlamentaresTemplate = $("#frenteParlamentaresDetailsViewTemplate").html();
 
 	this.parlamentarModel = new Parlamentar();
 
-	this.fetchData();
-	
+	this.frenteCreateParlamentarView = new FrenteCreateParlamentarView();
+	this.frenteCreateParlamentarView.load();
 }
-
-FrenteDetailsView.prototype.fetchData = function() {
-	var self = this;
-
-	
-};
-
 
 
 FrenteDetailsView.prototype.render = function(frente_details) {
@@ -36,7 +27,9 @@ FrenteDetailsView.prototype.render = function(frente_details) {
 	$("#create_frenteParlamentar").click(function(e){
 			id_frente = e.currentTarget.id;
 			console.log(id_frente);
-			self.createParlamentarDetails(id_frente);	
+			self.frenteCreateParlamentarView.show();
+
+			console.log("OPAAAAA TERMINOU");
 	});
 }
 
@@ -65,38 +58,6 @@ FrenteDetailsView.prototype.showParlamentarDetails = function(id_frente_clicado)
 	this.parlamentarModel.loadDetails(id_frente_clicado, sucess_function);
 };
 
-FrenteDetailsView.prototype.createParlamentarDetails = function(id_frente) {
-	var self = this;
-
-	var sucess_function = function(resultado) {
-
-
-		$("#tableRowSpinner").hide();
-		
-
-		lista_parlamentares = resultado['parlamentares'];
-		
-		console.log("ATE AQUI");
-		console.log(lista_parlamentares);
-		console.log(self);
-		console.log(self.frentesParlamentaresCreateTemplate);
-	//	var parlamentarCreate = _.template(this.frentesParlamentaresCreateTemplate);
-		//return compiled(frente_details);
-		$("#frenteCreateParlamentarView").html(self.frentesParlamentaresCreateTemplate);
 
 
 
-		$('#frenteCreateParlamentarView').show();
-//		for(x in lista_parlamentares){
-//			$('#frenteCreateParlamentarViewTemplate tbody').append(new ParlamentarView().render(lista_parlamentares[x]));
-//		}
-
-	}
-	this.parlamentarModel.load(sucess_function);
-};
-
-
-ParlamentaresView.prototype.fetchData = function() {
-	
-
-};

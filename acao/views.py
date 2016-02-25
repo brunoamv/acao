@@ -1,9 +1,42 @@
 from django.template.context import RequestContext
 from django.shortcuts import redirect, render_to_response
-from .models import Parlamentar,Comissoes,Frente,FrenteParlamentar
+from .models import Parlamentar,Comissoes,Frente,FrenteParlamentar,ComissaoParlamentar
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
+
 import simplejson
 
+
+def go_to_login(request):
+    responseDict = {}
+    return render_to_response('login.html', responseDict, context_instance=RequestContext(request))
+
+def authentic_user(request):
+    email = request.POST.get('email')
+    next_url = request.POST.get('next')
+    pwd = request.POST.get('pwd')
+    try:
+        user = authenticate(username=email, password=pwd)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                if (len(next_url) == 0):
+                    return HttpResponseRedirect('/')
+                else:
+                    return HttpResponseRedirect(next_url)
+        else:
+            return HttpResponseRedirect('/login?msg=faio')
+    except Exception, e:
+        print e
+        raise e
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+@login_required(login_url='/login/')
 def go_to_index(request):
     responseDict = {}
     return render_to_response('index.html', responseDict, context_instance=RequestContext(request))
@@ -124,6 +157,42 @@ def delete_parlamentar(request):
     return jsonResponse({'success': 'true'})
 
 
+def detail_parlamentar_comissoes(request,id_parlamentar):
+    responseDict = {}
+    parlamentarComissao_list = []
+    print id_parlamentar
+    try:
+        parlamentarComissoes = ComissaoParlamentar.objects.filter(parlamentar_id=id_parlamentar)
+        print parlamentarComissoes
+        for parlamentarComissao in parlamentarComissoes:
+            print parlamentarComissao
+            print parlamentarComissao.comissao_id
+            comissoes = Comissoes.objects.get(id=parlamentarComissao.comissao_id)
+            parlamentarComissao_list.append(comissoes.toJSON())
+        responseDict['parlamentarComissoes'] = parlamentarComissao_list
+        return jsonResponse(responseDict)
+    except Exception, e:
+        print e
+        return jsonResponse({'success': 'false'})
+
+def detail_parlamentar_frentes(request,id_parlamentar):
+    responseDict = {}
+    parlamentarFrente_list = []
+    print id_parlamentar
+    try:
+        parlamentarFrentes = FrenteParlamentar.objects.filter(parlamentar_id=id_parlamentar)
+        print parlamentarFrentes
+        for parlamentarFrente in parlamentarFrentes:
+            print parlamentarFrente
+            print parlamentarFrente.frente_id
+            frentes = Frente.objects.get(id=parlamentarFrente.frente_id)
+            parlamentarFrente_list.append(frentes.toJSON())
+        responseDict['parlamentarFrentes'] = parlamentarFrente_list
+        return jsonResponse(responseDict)
+    except Exception, e:
+        print e
+        return jsonResponse({'success': 'false'})
+
 def go_to_comissao(request):
     responseDict = {}
     return render_to_response('comissao.html', responseDict, context_instance=RequestContext(request))
@@ -187,6 +256,26 @@ def update_comissao(request):
     try:
         comissao_to_save.save()
         return jsonResponse({'success': 'true'})
+    except Exception, e:
+        print e
+        return jsonResponse({'success': 'false'})
+
+
+
+def detail_comissao_parlamentares(request,id_comissao):
+    responseDict = {}
+    comissaoParlamentar_list = []
+    print id_comissao
+    try:
+        comissaoParlamentares = ComissaoParlamentar.objects.filter(comissao_id=id_comissao)
+        print comissaoParlamentares
+        for comissaoParlamentar in comissaoParlamentares:
+            print comissaoParlamentar
+            print comissaoParlamentar.parlamentar_id
+            parlamentares = Parlamentar.objects.get(id=comissaoParlamentar.parlamentar_id)
+            comissaoParlamentar_list.append(parlamentares.toJSON())
+        responseDict['comissaoParlamentares'] = comissaoParlamentar_list
+        return jsonResponse(responseDict)
     except Exception, e:
         print e
         return jsonResponse({'success': 'false'})

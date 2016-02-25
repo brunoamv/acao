@@ -26,6 +26,7 @@ FrenteUpdateView.prototype.render = function(frente_details) {
 		console.log("ESSE CLICK NO BOTAO INICIA A OPERACAO DE SAVE");
 		self.updateFrente();
 	});
+	
 	$("#update_frente_ano").datetimepicker({
 		format: 'YYYY-MM-DD'
 	});

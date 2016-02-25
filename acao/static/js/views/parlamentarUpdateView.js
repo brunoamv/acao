@@ -26,6 +26,7 @@ ParlamentarUpdateView.prototype.render = function(parlamentar_details) {
 		console.log("ESSE CLICK NO BOTAO INICIA A OPERACAO DE SAVE");
 		self.updateParlamentar();
 	});
+	
 	$("#update_parlamentar_aniversario").datetimepicker({
 		format: 'YYYY-MM-DD'
 	});

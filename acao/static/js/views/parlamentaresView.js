@@ -45,7 +45,7 @@ ParlamentaresView.prototype.load = function() {
         }
 
 
-        $("#table_parlamentares tbody tr .update_parlamentar").click(function(e){
+        $("#parlamentaresView #table_parlamentares tbody tr .update_parlamentar").click(function(e){
             id_parlamentar_clicado = e.currentTarget.id;
             console.log("id_parlamentar_clicado");
             console.log(id_parlamentar_clicado);
@@ -57,28 +57,18 @@ ParlamentaresView.prototype.load = function() {
 
         });
 
-        $("#table_parlamentares tbody tr .delete_parlamentar").click(function(e){
+        $("#parlamentaresView #table_parlamentares tbody tr .delete_parlamentar").click(function(e){
             id_parlamentar_clicado = e.currentTarget.id;
             console.log(id_parlamentar_clicado);
             self.showParlamentarDelete(id_parlamentar_clicado);
         });
 
-        $("#table_parlamentares tbody tr .details_parlamentar").click(function(e){
+        $("#parlamentaresView #table_parlamentares .details_parlamentar").click(function(e){
             id_parlamentar_clicado = e.currentTarget.id;
             console.log(id_parlamentar_clicado);
             self.showParlamentarDetails(id_parlamentar_clicado);
         });
 
-        $("#table_parlamentares tbody tr .update").click(function(e){
-            id_parlamentar_clicado = e.currentTarget.id;
-            console.log("id_parlamentar_clicado");
-            console.log(id_parlamentar_clicado);
-            parlamentar_obj = self.parlamentar_dict[id_parlamentar_clicado];
-            //self.showFrenteUpdate(id_frente_clicado);
-            self.parlamentarUpdateView.render(parlamentar_obj);
-            self.hide();
-            self.parlamentarUpdateView.show();
-        });
 
         $("#create_parlamentar").click(function(e){
             id_parlamentar_clicado = e.currentTarget.id;
@@ -103,6 +93,8 @@ ParlamentaresView.prototype.fetchData = function() {
 ParlamentaresView.prototype.showParlamentarDetails = function(id_parlamentar_clicado) {
     var self = this;
     var sucess_function = function(resultado) {
+        self.fetchComissoesData(id_parlamentar_clicado);
+        self.fetchFrentesData(id_parlamentar_clicado);
         self.parlamentarDetailsView.render(resultado);
         console.log(resultado);
         self.hide();
@@ -126,4 +118,32 @@ ParlamentaresView.prototype.showParlamentarDelete = function(id_parlamentar_clic
     this.parlamentarModel.deleteParlamentar(id_parlamentar_clicado, sucess_function);
 };
 
+ParlamentaresView.prototype.fetchComissoesData = function(id_parlamentar_clicado){
+    var self = this;
 
+    var sucess_function = function(resultado) {
+        lista_comissoes = resultado['parlamentarComissoes'];
+        for(x in lista_comissoes){
+            $('#parlamentarComissoesDetailsView tbody').append(new ComissaoView().render(lista_comissoes[x]));
+        }
+        self.hide();
+    }
+        this.parlamentarModel.loadDetails_comissoes(id_parlamentar_clicado, sucess_function);
+};
+
+
+ParlamentaresView.prototype.fetchFrentesData = function(id_parlamentar_clicado){
+    var self = this;
+        console.log('VAI VAI VAI');
+
+    var sucess_function = function(resultado) {
+        lista_frentes = resultado['parlamentarFrentes'];
+        for(x in lista_frentes){
+            console.log('VAI VwwwwwAI VAI');
+            console.log(lista_frentes[x]);
+            $('#parlamentarFrentesDetailsView tbody').append(new FrenteView().render(lista_frentes[x]));
+        }
+        self.hide();
+    }
+        this.parlamentarModel.loadDetails_frentes(id_parlamentar_clicado, sucess_function);
+};

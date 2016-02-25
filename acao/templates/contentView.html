@@ -23,6 +23,18 @@
     </div>
 </script>
 
+<script type="text/html" id='loginViewTemplate'>
+
+<div class="container">
+  <!-- Modal -->
+  
+  
+</div>
+  
+  
+</script>
+
+
 <script type="text/html" id='dashboardViewTemplate'> 
         <div id="page-wrapper">
 
@@ -333,6 +345,9 @@
 
 
 <script type="text/html" id='frenteDetailsViewTemplate'>
+
+
+
         <div id="page-wrapper">
             <div class="container-fluid">
                  <!-- Page Heading -->
@@ -394,7 +409,11 @@
                                             <div class="col-lg-12">
                                                 <div class="table-responsive">
                                                         <div id='frenteParlamentaresDetails'>
-                                                            <button id="create_frenteParlamentar"type="button" value="<%= id %>" class="btn btn btn-success">Novo     Parlamentar</button>           
+                                                            <button id="create_frenteParlamentar"type="button" value="<%= id %>" class="btn btn btn-success" data-toggle="modal" data-target="#myModal">
+
+                                                            Novo     Parlamentar</button> 
+
+
                                                              <table id='frenteParlamentaresDetailsView' class="table table-      hover table-striped">   
                                                             <thead>     
                                                                 <tr>       
@@ -421,6 +440,54 @@
 
 
 <script type="text/html" id='frenteCreateParlamentarViewTemplate'>
+
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> ADD Parlamentares - frentes</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table id='table_parlamentares' class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>nome</th>
+                                        <th>uf</th>
+                                        <th>celular</th>
+                                        <th>telefone</th>
+                                        <th>fax</th>
+                                        <th>email</th>                            
+                                        <th>gabinete</th>
+                                        <th>Remover</th>
+                                        <th>Atualizar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+  
   
 </script>
 
@@ -697,6 +764,67 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                     Comissoes Parlamentar - <%= nome %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                        <div id='parlamentarComissoesDetails'>
+                                                            <button id="create_parlamentarComissao"type="button" value="<%= id %>" class="btn btn btn-success">Nova  Comissao</button>           
+                                                             <table id='parlamentarComissoesDetailsView' class="table table-      hover table-striped">   
+                                                            <thead>     
+                                                                <tr>       
+                                                                         <th>SIGLA</th>      
+                                                                         <th>Nome</th>    
+                                                                         <th>Indicado</th>    
+                                                                         <th>condicao</th>
+                                                                </tr>      
+                                                            </thead>       
+                                                            <tbody>     
+                                                            </tbody>  
+                                                        </div>
+                                                    </table>        
+                                                </div>      
+                                            </div>      
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                     Frentes Parlamentar - <%= nome %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                        <div id='parlamentarFrentesDetails'>
+                                                            <button id="create_parlamentarfrente"type="button" value="<%= id %>" class="btn btn btn-success">Nova  Frente</button>           
+                                                             <table id='parlamentarFrentesDetailsView' class="table table-      hover table-striped">   
+                                                            <thead>     
+                                                                <tr>       
+                                                                         <th>SIGLA</th>      
+                                                                         <th>Nome</th>    
+                                                                         <th>tipo</th>    
+                                                                         <th>ano</th>
+                                                                </tr>      
+                                                            </thead>       
+                                                            <tbody>     
+                                                            </tbody>  
+                                                        </div>
+                                                    </table>        
+                                                </div>      
+                                            </div>      
+                                        </div>
+
+
+
+
+
                                     </div>    
                             </div>
                     </div>    
@@ -814,14 +942,11 @@
 </script>
 
 <script type="text/html" id='parlamentarUpdateViewTemplate'>
-        <div id="page-wrapper">
-            <div class="container-fluid">
                  <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
                             <div id="page-wrapper">
-
-                                    <div class="container-fluid">
+                                <div class="container-fluid">
 
                                         <!-- Page Heading -->
                                         <div class="row">
@@ -829,7 +954,6 @@
                                                 <h1 class="page-header">
                                                     Update da Parlamentar
                                                 </h1>
-
                                             </div>
                                         </div>
                                         <!-- /.row -->
@@ -840,7 +964,7 @@
                                                     <form class="form-inline" role="form">
                                                         <div class="form-group">
                                                             <label>ID</label>
-                                                            <input type='hidden' id="update_parlamentar_id" value="<%= id %>" class="form-control-static" > 
+                                                            <input type='hidden' id="update_parlamentar_id" value="<%= id %>" class="form-control" > 
                                                         </div>  
                                                         <div class="form-group">
                                                             <label>Nome</label>
@@ -851,41 +975,34 @@
                                                             <label>UF</label>
                                                             <input id="update_parlamentar_uf" class="form-control" value="<%= uf %>">
                                                         </div>
-                                                     </form>   
+                                                    </form>   
                                                     <form class="form-inline" role="form">
                                                         <div class="form-group">
                                                             <label>Celular</label>
                                                             <input id="update_parlamentar_celular"class="form-control" value="<%= celular %>">
                                                         </div>
-
                                                         <div class="form-group">
                                                             <label>Telefone</label>
                                                             <input id="update_parlamentar_telefone"class="form-control" value="<%= telefone %>">
                                                         </div>
-
                                                         <div class="form-group">
                                                             <label>Fax</label>
                                                             <input id="update_parlamentar_fax"class="form-control" value="<%= fax %>">
                                                         </div>
-                                                     </form>   
-                                                     <form class="form-inline" role="form">    
-
+                                                    </form>   
+                                                    <form class="form-inline" role="form"> 
                                                         <div class="form-group">
                                                             <label>Email</label>
                                                             <input id="update_parlamentar_email" class="form-control" value="<%= email %>">
                                                         </div>
-                                                    </form>                                                        
-                                                    <form class="form-inline" role="form">
                                                         <div class="form-group">
                                                             <label>Titular</label>
                                                             <input id="update_parlamentar_titular" class="form-control" value="<%= titular %>">
                                                         </div>
-
                                                         <div class="form-group">
                                                             <label>Gabinete</label>
                                                             <input id="update_parlamentar_gabinete" class="form-control" value="<%= gabinete %>">
                                                         </div>
-
                                                         <div class="form-group">
                                                             <label>Anexo</label>
                                                             <input id="update_parlamentar_anexo" class="form-control" value="<%= anexo %>">
@@ -896,10 +1013,9 @@
                                                             <label>Profissoes</label>
                                                             <input id="update_parlamentar_profissoes" class="form-control" value="<%= profissoes %>">
                                                         </div>
-
                                                         <div class="form-group">
                                                             <label>Aniversario</label>
-                                                            <input id="update_parlamentar_aniversario"class="form-control" value="<%= aniversario %>">
+                                                            <input id="update_parlamentar_aniversario" class="form-control" value="<%= aniversario %>">
                                                         </div>
                                                     </form>    
                                                     <form class="form-inline" role="form">
@@ -907,22 +1023,19 @@
                                                             <label>nome_civil</label>
                                                             <input id="update_parlamentar_nome_civil" class="form-control" value="<%= nome_civil %>">
                                                         </div>
-
                                                         <div class="form-group">
                                                             <label>Tratamento</label>
                                                             <input id="update_parlamentar_tratamento" class="form-control" value="<%= tratamento %>">
                                                         </div>
-
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
-                                       <button id="botao_update_parlamentar" type="submit" class="btn btn-success">Save</button> 
+                                       <button id="botao_update_parlamentar" type="button" class="btn btn-success">Save</button> 
+                                </div>   
                             </div>
                     </div>    
                 </div>
-            </div>
-        </div>
 </script>
 
 
@@ -1035,6 +1148,34 @@
 
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h1 class="page-header">
+                                                    Parlamentares Comissao - <%= sigla %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                        <div id='comissaoParlamentaresDetails'>
+                                                            <button id="create_comissaoParlamentar"type="button" value="<%= id %>" class="btn btn btn-success">Novo     Parlamentar</button>           
+                                                             <table id='comissaoParlamentaresDetailsView' class="table table-      hover table-striped">   
+                                                            <thead>     
+                                                                <tr>       
+                                                                         <th>Nome</th>      
+                                                                         <th>UF</th>    
+                                                                         <th>Telefone</th>    
+                                                                         <th>E-mail</th>
+                                                                </tr>      
+                                                            </thead>       
+                                                            <tbody>     
+                                                            </tbody>  
+                                                        </div>
+                                                    </table>        
+                                                </div>      
+                                            </div>      
                                         </div>
                                     </div>    
                             </div>

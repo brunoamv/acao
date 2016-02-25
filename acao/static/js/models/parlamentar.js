@@ -26,3 +26,11 @@ Parlamentar.prototype.deleteParlamentar = function(id_to_delete, sucess_function
 	
 	$.ajax({method: "POST", url: "/parlamentar/delete/", data: {'id_to_delete': id_to_delete}, success:sucess_function});	
 };
+
+Parlamentar.prototype.loadDetails_comissoes = function(id_to_detail, sucess_function) {
+	$.ajax({url: "/parlamentar/"+id_to_detail+"/comissoes/", success:sucess_function});	
+};
+
+Parlamentar.prototype.loadDetails_frentes = function(id_to_detail, sucess_function) {
+	$.ajax({url: "/parlamentar/"+id_to_detail+"/frentes/", success:sucess_function});	
+};

@@ -80,6 +80,7 @@ ComissoesView.prototype.fetchData = function() {
 ComissoesView.prototype.showComissaoDetails = function(id_comissao_clicado) {
 	var self = this;
 	var sucess_function = function(resultado) {
+		self.fetchParlamentaresData(id_comissao_clicado);
 		console.log(resultado);
 		self.comissaoDetailsView.render(resultado);
 		self.hide();
@@ -101,4 +102,20 @@ ComissoesView.prototype.showComissaoDelete = function(id_comissao_clicado) {
     console.log(id_comissao_clicado);
 
     this.comissaoModel.deleteComissoes(id_comissao_clicado, sucess_function);
+};
+
+
+ComissoesView.prototype.fetchParlamentaresData = function(id_comissao_clicado){
+	var self = this;
+
+	var sucess_function = function(resultado) {
+		lista_parlamentares = resultado['comissaoParlamentares'];
+		console.log('VAI VAI VAI');
+   		console.log(resultado);
+		for(x in lista_parlamentares){
+			$('#comissaoParlamentaresDetailsView tbody').append(new ParlamentarView().render(lista_parlamentares[x]));
+		}
+		self.hide();
+	}
+		this.comissaoModel.loadDetails_parlamentares(id_comissao_clicado, sucess_function);
 };
