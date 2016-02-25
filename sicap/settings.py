@@ -80,7 +80,7 @@ if ENVIRONMENT=='online':
  STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')    
  DEBUG = True
  #STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
- DB_HOST='sicap.crgzdupd4jsy.us-west-2.rds.amazonaws.com'
+ DB_HOST='acao2.crgzdupd4jsy.us-west-2.rds.amazonaws.com'
  DB_USER='admin'
  DB_PASSWORD='rosinha06'
 
