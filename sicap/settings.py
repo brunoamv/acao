@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -77,10 +79,10 @@ if ENVIRONMENT=='online':
  # SECURITY WARNING: don't run with debug turned on in production!
  STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')    
  DEBUG = True
- STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
- DB_HOST='.us-west-2.rds.amazonaws.com'
- DB_USER=''
- DB_PASSWORD=''
+ #STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+ DB_HOST='sicap.crgzdupd4jsy.us-west-2.rds.amazonaws.com'
+ DB_USER='admin'
+ DB_PASSWORD='rosa'
 
 elif ENVIRONMENT=='offline':
  STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')  
