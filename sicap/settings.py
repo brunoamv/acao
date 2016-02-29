@@ -62,6 +62,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.core.context_processors.static',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -71,9 +72,14 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    )
+
 WSGI_APPLICATION = 'sicap.wsgi.application'
 
-ENVIRONMENT='online'
+ENVIRONMENT='offline'
 
 if ENVIRONMENT=='online':
  # SECURITY WARNING: don't run with debug turned on in production!
@@ -85,12 +91,13 @@ if ENVIRONMENT=='online':
  DB_PASSWORD='rosinha06'
 
 elif ENVIRONMENT=='offline':
- STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')  
+ STATIC_ROOT = '/home/bruno/workspace/sicap/'  
  DEBUG = True
+ ADMIN_MEDIA_PREFIX = '/static/admin/' # don't forget this one
  STATIC_URL = '/static/'
- DB_HOST='127.0.0.1'
+ DB_HOST='localhost'
  DB_USER='root'
- DB_PASSWORD='Timtones09'
+ DB_PASSWORD=''
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -98,7 +105,7 @@ elif ENVIRONMENT=='offline':
 DATABASES = {    
   'default' : {
       'ENGINE': 'django.db.backends.mysql', 
-      'NAME': 'sicap',
+      'NAME': 'ACAO2',
       'USER': DB_USER,
       'PASSWORD': DB_PASSWORD,
       'HOST': DB_HOST,   # Or an IP Address that your DB is hosted on

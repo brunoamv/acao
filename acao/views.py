@@ -39,6 +39,7 @@ def logout_user(request):
 @login_required(login_url='/login/')
 def go_to_index(request):
     responseDict = {}
+    print 'CHEGOU index'
     return render_to_response('index.html', responseDict, context_instance=RequestContext(request))
 
 def go_to_parlamentares(request):
