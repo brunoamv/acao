@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
+from django.conf.urls.static import static
 import acao.views
 
 
@@ -33,10 +34,4 @@ urlpatterns = [
    url(r'^frente/update/$', acao.views.update_frente),
    url(r'^frente/update/(?P<id_frente>[0-9])+/$', acao.views.detail_frente),
    url(r'^frente/delete/$', acao.views.delete_frente),
-]
-
-urlpatterns += [
-   url(r'^static/(.*)$', django.views.static.serve, {document_root: settings.STATIC_PATH}), 
-]
-
-
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

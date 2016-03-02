@@ -91,13 +91,16 @@ if ENVIRONMENT=='online':
  DB_PASSWORD='rosinha06'
 
 elif ENVIRONMENT=='offline':
- STATIC_ROOT = '/home/bruno/workspace/sicap/'  
+ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')    
  DEBUG = True
  ADMIN_MEDIA_PREFIX = '/static/admin/' # don't forget this one
  STATIC_URL = '/static/'
  DB_HOST='localhost'
  DB_USER='root'
  DB_PASSWORD=''
+ # DB_HOST='acao2.crgzdupd4jsy.us-west-2.rds.amazonaws.com'
+ # DB_USER='admin'
+ # DB_PASSWORD='rosinha06'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
